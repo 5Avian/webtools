@@ -4,27 +4,40 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>hashfuncs</title>
-    <link rel="stylesheet" href="../other/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<label for="algorithm">Algorithm</label>
-	<select id="algorithm">
-		<option value="djb2">djb2</option>
-		<option value="sdbm">sdbm</option>
-		<option value="fnv-1">fnv-1</option>
-		<option value="fnv-1a">fnv-1a</option>
-		<option value="one_at_a_time">one_at_a_time</option>
-	</select>
-	<label for="data_type">Data type</label>
-	<select id="data_type">
-		<option value="32">uint32_t</option>
-		<option value="64">uint64_t</option>
-	</select>
-	<label for="input_string">Input string</label>
-	<input id="input_string" type="text" value="hash me">
-	<label for="output_hash">Output hash</label>
-	<input id="output_hash" type="text" readonly>
-	<a id="algorithm_reference" target="_blank">Algorithm reference</a>
+	<nav>
+		<a href="index.html" title="navigate through the tools on this site">index</a>
+		<a href="avgcolor.html" title="get the average color of an image">avgcolor</a>
+		<a href="avgpalette.html" title="get the average color of each tile in a tilesheet image">avgpalette</a>
+		<a href="bitshift.html" title="see the result of bitshift operations">bitshift</a>
+		<a href="favicon_generator.html" title="generate a favicon with configurable font, text, and colors">favicon_generator</a>
+		<a href="hashfuncs.html" title="see the result of multiple hash functions on UTF-8 text">hashfuncs</a>
+		<a href="mkchr.html" title="create a NES pattern table from an image">mkchr</a>
+		<a href="padtiles.html" title="pad a tilesheet for texture smoothing">padtiles</a>
+	</nav>
+	<main>
+		<label>algorithm</label>
+		<select id="algorithm">
+			<option value="djb2">djb2</option>
+			<option value="sdbm">sdbm</option>
+			<option value="fnv-1">fnv-1</option>
+			<option value="fnv-1a">fnv-1a</option>
+			<option value="one_at_a_time">one_at_a_time</option>
+		</select>
+		<a id="algorithm_reference" target="_blank">algorithm reference</a>
+		<label>data type</label>
+		<select id="data_type">
+			<option value="32">uint32_t</option>
+			<option value="64">uint64_t</option>
+		</select>
+		<label>input string</label>
+		<input id="input_string" type="text" value="hash me">
+		<hr>
+		<label>output hash</label>
+		<input id="output_hash" type="text" readonly>
+	</main>
 	<script>
 		const algorithm = document.getElementById("algorithm");
 		const dataType = document.getElementById("data_type");
@@ -132,7 +145,7 @@
 			const size = parseInt(dataType.value);
 			outputHash.value = func(buf, size).toString();
 			const ref = algorithmReferences[algorithm.value];
-			algorithmReference.innerText = "Algorithm reference for " + algorithm.value;
+			algorithmReference.innerText = "algorithm reference for " + algorithm.value;
 			algorithmReference.href = ref;
 		}
 

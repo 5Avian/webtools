@@ -1,5 +1,5 @@
 // A C implementation of the hash functions
-// in `apps/hashfuncs.html` to compare with.
+// in `www/hashfuncs.html` to compare with.
 
 #include <stdio.h>
 #include <inttypes.h>

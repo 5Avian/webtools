@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>bitshift</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<nav>
+		<a href="index.html" title="navigate through the tools on this site">index</a>
+		<a href="avgcolor.html" title="get the average color of an image">avgcolor</a>
+		<a href="avgpalette.html" title="get the average color of each tile in a tilesheet image">avgpalette</a>
+		<a href="bitshift.html" title="see the result of bitshift operations">bitshift</a>
+		<a href="favicon_generator.html" title="generate a favicon with configurable font, text, and colors">favicon_generator</a>
+		<a href="hashfuncs.html" title="see the result of multiple hash functions on UTF-8 text">hashfuncs</a>
+		<a href="mkchr.html" title="create a NES pattern table from an image">mkchr</a>
+		<a href="padtiles.html" title="pad a tilesheet for texture smoothing">padtiles</a>
+	</nav>
+	<main>
+		<label>expression</label>
+		<input id="expression" type="text" value="0x5a << 4">
+		<label>format</label>
+		<code>&lt;c-literal&gt; " " ("&lt;&lt;" | "&gt;&gt;") " " &lt;c-literal&gt;</code>
+		<hr>
+		<input id="output_dec" type="text" readonly>
+		<input id="output_hex" type="text" readonly>
+		<input id="output_bin" type="text" readonly>
+		<input id="output_oct" type="text" readonly>
+	</main>
+	<script>
+		const expression = document.getElementById("expression");
+		const outputDec = document.getElementById("output_dec");
+		const outputHex = document.getElementById("output_hex");
+		const outputBin = document.getElementById("output_bin");
+		const outputOct = document.getElementById("output_oct");
+		const outputs = [outputDec, outputHex, outputBin, outputOct];
+
+		function setValue(num) {
+			if (num == null) {
+				for (const output of outputs) {
+					output.value = "-";
+				}
+			} else {
+				outputDec.value = num.toString(10);
+				outputHex.value = "0x" + num.toString(16);
+				outputBin.value = "0b" + num.toString(2);
+				outputOct.value = "0" + num.toString(8);
+			}
+		}
+
+		function parseLiteral(str) {
+			if (str[0] === "0") {
+				if (str[1] === "x") {
+					return parseInt(str.substring(2), 16);
+				} else if (str[1] == "b") {
+					return parseInt(str.substring(2), 2);
+				} else {
+					return parseInt(str.substring(1), 8);
+				}
+			} else {
+				return parseInt(str, 10);
+			}
+		}
+
+		function calculateBitShift() {
+			const value = expression.value.trim().split(" ");
+			if (value.length !== 3 || (value[1] != "<<" && value[1] != ">>")) {
+				setValue(null);
+				return;
+			}
+			let num = BigInt(parseLiteral(value[0]));
+			const amount = BigInt(parseLiteral(value[2]));
+			if (value[1] == "<<") {
+				num <<= amount;
+			} else {
+				num >>= amount;
+			}
+			setValue(num);
+		}
+
+		expression.oninput = e => calculateBitShift();
+		calculateBitShift();
+	</script>
+</body>
+</html>

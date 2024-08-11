@@ -4,29 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>avgpalette</title>
-    <link rel="stylesheet" href="../other/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <canvas id="canvas" width="0" height="0"></canvas>
-    <input id="tile_width" type="number" value="16">
-    <input id="tile_height" type="number" value="16">
-    <div id="image_drop">Drop images here</div>
-    <a id="download_anchor"></a>
-    <style>
-        #canvas {
-            border: 1px solid black;
-            width: 200px;
-            height: 200px;
-            image-rendering: pixelated;
-        }
-        #image_drop {
-            border: 2px dashed black;
-            padding: 25px 100px;
-        }
-        #download_anchor {
-            display: none;
-        }
-    </style>
+    <nav>
+		<a href="index.html" title="navigate through the tools on this site">index</a>
+		<a href="avgcolor.html" title="get the average color of an image">avgcolor</a>
+		<a href="avgpalette.html" title="get the average color of each tile in a tilesheet image">avgpalette</a>
+		<a href="bitshift.html" title="see the result of bitshift operations">bitshift</a>
+		<a href="favicon_generator.html" title="generate a favicon with configurable font, text, and colors">favicon_generator</a>
+		<a href="hashfuncs.html" title="see the result of multiple hash functions on UTF-8 text">hashfuncs</a>
+		<a href="mkchr.html" title="create a NES pattern table from an image">mkchr</a>
+		<a href="padtiles.html" title="pad a tilesheet for texture smoothing">padtiles</a>
+	</nav>
+    <main>
+        <canvas class="c-imagepreview" id="canvas" width="0" height="0"></canvas>
+        <div class="c-filedrop" id="image_drop">drop image here</div>
+        <label>tile width</label>
+        <input id="tile_width" type="number" value="16">
+        <label>tile height</label>
+        <input id="tile_height" type="number" value="16">
+        <a class="invisible" id="download_anchor"></a>
+    </main>
     <script>
         const canvas = document.getElementById("canvas");
         const imageDrop = document.getElementById("image_drop");

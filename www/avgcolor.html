@@ -4,34 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>avgcolor</title>
-    <link rel="stylesheet" href="../other/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <canvas id="canvas" width="0" height="0"></canvas>
-    <div id="image_drop">Drop images here</div>
-    <div id="color_preview"></div>
-    <span id="color_hex">000000</span>
-    <style>
-        #canvas {
-            border: 1px solid black;
-            width: 200px;
-            height: 200px;
-            image-rendering: pixelated;
-        }
-        #image_drop {
-            border: 2px dashed black;
-            padding: 25px 100px;
-        }
-        #color_preview {
-            width: 50px;
-            height: 50px;
-            background-color: black;
-        }
-        #color_hex {
-            text-decoration: underline;
-            cursor: pointer;
-        }
-    </style>
+    <nav>
+		<a href="index.html" title="navigate through the tools on this site">index</a>
+		<a href="avgcolor.html" title="get the average color of an image">avgcolor</a>
+		<a href="avgpalette.html" title="get the average color of each tile in a tilesheet image">avgpalette</a>
+		<a href="bitshift.html" title="see the result of bitshift operations">bitshift</a>
+		<a href="favicon_generator.html" title="generate a favicon with configurable font, text, and colors">favicon_generator</a>
+		<a href="hashfuncs.html" title="see the result of multiple hash functions on UTF-8 text">hashfuncs</a>
+		<a href="mkchr.html" title="create a NES pattern table from an image">mkchr</a>
+		<a href="padtiles.html" title="pad a tilesheet for texture smoothing">padtiles</a>
+	</nav>
+    <main>
+        <canvas class="c-imagepreview" id="canvas" width="0" height="0"></canvas>
+        <div class="c-filedrop" id="image_drop">drop image here</div>
+        <hr>
+        <label>average color</label>
+        <div class="c-colorpreview" id="color_preview" style="background-color:#000000"></div>
+        <button id="color_hex">000000</span>
+    </main>
     <script>
         const canvas = document.getElementById("canvas");
         const imageDrop = document.getElementById("image_drop");
